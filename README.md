@@ -1,6 +1,6 @@
 # Proffy
 Aplicação construida durante a semana Next-Level-Week da #rocketseat  
-com o intuito de estreitar a relação entre o aluno e professor.   
+com o intuito de aproximar o aluno e o professor.   
 O professor realiza o cadastro na plataforma informando os horários diponíveis  
 Já o aluno pode escolher o professor e entrar em contato   
 
@@ -8,4 +8,9 @@ Já o aluno pode escolher o professor e entrar em contato
 
 
 ## Configurações para criação do projeto
+- yarn create react-app web --template typescript
 - yarn add axios
+- yarn add react-router-dom
+- yarn add @types/react-router-dom -D
+
+

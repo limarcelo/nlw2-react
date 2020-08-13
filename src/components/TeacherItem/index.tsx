@@ -2,29 +2,48 @@ import React from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 import './styles.css'
-function TeacherItem(){
+import api from '../../services/api';
+
+export interface Teacher {
+    id: number,
+    avatar:string,
+    bio: string,
+    cost: number,
+    name: string,
+    subject: string,
+    whatsapp: string,
+}
+
+interface TeacherItemProps {
+   teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({teacher}) =>{
+
+    function createNewConnection(){
+        api.post('connections', {
+            user_id: teacher.id,
+        })
+    }
+
     return (
         <article className="teacher-item">
         <header>
-            <img src="https://media-exp1.licdn.com/dms/image/C5603AQED2JbiPpn5Lw/profile-displayphoto-shrink_200_200/0?e=1602115200&v=beta&t=S69Lw9F9vYLCTGI17QgMStZuFEkeG9Dz04t0efaOFH4" alt="Marcleo"/>
+            <img src={teacher.avatar} alt="Marcleo"/>
              <div>
-                 <strong>Marcelo lima</strong>
-                 <span>Química</span>
+                <strong>{teacher.name}</strong>
+                 <span>{teacher.subject}</span>
              </div>
         </header>
-        <p>
-            Entusiasta das melhores tecnologias de quimica avançada.
-            <br /><br />
-            Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências.
-        </p>
+        <p>{teacher.bio}</p>
         <footer>
             <p>Preço/Hora
-                 <strong>R$ 80,00</strong>
+                 <strong>{teacher.cost}</strong>
             </p>
-            <button type="button">
+            <a  target="_blank" onClick={createNewConnection} href={`https://wa.me/+5567992969592`}>
                 <img src={whatsappIcon} alt="Whatsapp"/>
                 Entrar em Contato
-            </button>
+            </a>
         </footer>
     </article>
     )
